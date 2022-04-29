@@ -1,0 +1,46 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    
+}
+
+.container{
+    background-color: rgb(190, 181, 181);
+    width: 440px;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    box-sizing: border-box;
+    border: 2px solid black ;
+    border-radius: 10px;
+    
+
+      
+}
+
+.display{
+    background-color: rgb(220, 215, 212);
+    height: 20%;
+    width: 100%;
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 5px;
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+    
+}
+
+.display .previous {
+    font-size: 20px;
+    text-align: end;
+}
+
+.display .current {
+    font-size: 40px;
+    text-align: end;
+}
+
