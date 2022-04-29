@@ -17,8 +17,8 @@ function divide(a, b) {
   return Number.isInteger(res) ? res : res.toFixed(2);
 }
 
-function pow(a, b) {
-  return Math.pow(a, b);
+function modulo(a, b) {
+  return a % b;
 }
 
 /* operate will call math functions */
@@ -29,20 +29,15 @@ function operate(operater, a, b) {
       return add(a, b);
 
     case "-":
-      subtract(a, b);
-          return add(a, b);
-      
+      return subtract(a, b);
+
     case "*":
-      multiply(a, b);
-          return add(a, b);
-      
+      return multiply(a, b);
+
     case "/":
-      divide(a, b);
-          return add(a, b);
-      
-    case "^":
-      pow(a, b);
-          return add(a, b);
-      
+      return divide(a, b);
+
+    case "%":
+      return modulo(a, b);
   }
 }
