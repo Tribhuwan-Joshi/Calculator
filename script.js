@@ -12,9 +12,14 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a / b;  
+    let res = a/b;
+    return (Number.isInteger(res) ? res : res.toFixed(2));
 }
 
+
 function sqrt(x) {
-    return Math.sqrt(x);  
+    let res = Math.sqrt(x);
+    return (Number.isInteger(res) ? res : res.toFixed(2));
 }
+
+
