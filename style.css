@@ -1,46 +1,94 @@
-html,body{
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    display: flex;
-    
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
 }
 
-.container{
-    background-color: rgb(190, 181, 181);
-    width: 440px;
-    height: 600px;
-    margin: auto;
-    display: flex;
-    box-sizing: border-box;
-    border: 2px solid black ;
-    border-radius: 10px;
-    
+.container {
+  background-color: rgb(213, 204, 204);
+  width: 400px;
+  height: 550px;
+  padding: 10px 7px;
+  display: flex;
+  flex-direction: column;
 
-      
+  margin: auto;
+
+  border: 2px solid black;
+  border-radius: 10px;
 }
 
-.display{
-    background-color: rgb(220, 215, 212);
-    height: 17%;
-    width: 100%;
-    margin: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 0 5px;
-    font-family: 'Lato', sans-serif;
-    box-sizing: border-box;
-    
+.display {
+  background-color: rgb(243, 232, 226);
+  height: 40%;
+  border: 2px solid black;
+
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0px 5px;
+
+  box-sizing: border-box;
 }
 
 .display .previous {
-    font-size: 20px;
-    text-align: end;
+  font-size: 20px;
+  text-align: end;
 }
 
 .display .current {
-    font-size: 40px;
-    text-align: end;
+  font-size: 40px;
+  text-align: end;
 }
 
+/* button design */
+
+.button-container {
+  height: 100%;
+  display: flex;
+
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.buttons button {
+  border: 1px solid black;
+  flex-basis: auto;
+  height: 90px;
+  min-width: 100px;
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.buttons .divide {
+  font-size: x-large;
+}
+.buttons .dot {
+  font-size: xx-large;
+}
+.buttons .ac {
+  color: red;
+}
+.buttons .equal {
+  flex-grow: 2;
+  font-size: 26px;
+}
+
+.footer {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.footer-link {
+  text-decoration: none;
+}
