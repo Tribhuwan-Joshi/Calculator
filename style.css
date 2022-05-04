@@ -62,7 +62,7 @@ body {
 }
 
 .buttons button {
-  border: 1px solid black;
+  outline: none;
   flex-basis: auto;
   height: 90px;
   min-width: 100px;
