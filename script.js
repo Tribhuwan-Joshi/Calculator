@@ -100,30 +100,20 @@ dot.addEventListener("click", handleDot);
 /* functions to handle events */
 
 function handleKeyboard(e) {
+  let input = e.key;
   if (fullInput.length >= 16) {
     handleAC();
   }
-  let key = e.key;
-  console.log("key pressed ", key);
+  
 
   if (key == "Escape") {
     handleAC();
   }
   else if (key >= 0 && key <= 9) {
-    let input = e.key;
-    // console.log("in the num keys");
-    if (!firstEnd) {
-    firstValue += input;
-    fullInput += input;
-    display.textContent = fullInput;
-  } else if (firstEnd) {
-    secondValue += input;
-    fullInput += input;
-    display.textContent = fullInput;
-    }
     
-}
-  
+    handleNums(input);
+
+}  
   else if (
     key == "+" ||
     key == "-" ||
@@ -131,27 +121,7 @@ function handleKeyboard(e) {
     key == "%" ||
     key == "/"
   ) {
-    let input = e.key;
-    if (firstEnd && opUsed && !secondValue) {
-      handleDelete();
-      fullInput += ` ${input} `;
-      currentOp = input;
-      display.textContent = fullInput;
-    } else if (opUsed && secondValue) {
-      let res = operate(currentOp, firstValue, secondValue);
-      fullInput = String(res) + ` ${input} `;
-
-      currentOp = input;
-      firstValue = String(res);
-      secondValue = "";
-      display.textContent = fullInput;
-    } else if (!opUsed && firstValue) {
-      currentOp = input;
-      opUsed = true;
-      fullInput += ` ${input} `;
-      display.textContent = fullInput;
-      firstEnd = true;
-    }
+    handleOperators(input);
 
   } else if (key == "=" || key == "Enter") {
     handleEqual();
@@ -184,6 +154,7 @@ function handleDot() {
       display.textContent = fullInput;
     }
   }
+ 
 }
 
 function handleEqual() {
@@ -233,9 +204,9 @@ function handleDelete() {
 }
 
 
-function handleOperators(e) {
-
-  let input = e.target.textContent;
+function handleOperators(input) {
+  
+  // let input = e.target.textContent;
   if (firstEnd && opUsed && !secondValue) {
     handleDelete();
     fullInput += ` ${input} `;
@@ -262,13 +233,8 @@ function handleOperators(e) {
 
 
 
-function handleNums(e) {
-  console.log("handling nums with e ", e);
-
-  let input = e.target.textContent;
-
-  // console.log(input);
-  if (!firstEnd) {
+function handleNums(input) {
+    if (!firstEnd) {
     firstValue += input;
     fullInput += input;
     display.textContent = fullInput;
