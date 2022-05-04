@@ -65,14 +65,13 @@ const dot = document.querySelector(".dot");
 /*  variables  */
 
 let fullInput = "";
-let fullInputLen = 0;
 let opUsed = false;
 let currentOp = "";
 let signUsed = false;
 let firstValue = "";
 let firstEnd = false;
 let secondValue = "";
-let secondEnd = false;
+
 
 /* add eventlistener */
 document.addEventListener("keydown", (e) => handleKeyboard(e));
@@ -109,16 +108,51 @@ function handleKeyboard(e) {
 
   if (key == "Escape") {
     handleAC();
-  } else if (key >= 0 && key <= 9) {
-    handleNums(e);
-  } else if (
+  }
+  else if (key >= 0 && key <= 9) {
+    let input = e.key;
+    // console.log("in the num keys");
+    if (!firstEnd) {
+    firstValue += input;
+    fullInput += input;
+    display.textContent = fullInput;
+  } else if (firstEnd) {
+    secondValue += input;
+    fullInput += input;
+    display.textContent = fullInput;
+    }
+    
+}
+  
+  else if (
     key == "+" ||
     key == "-" ||
     key == "*" ||
     key == "%" ||
     key == "/"
   ) {
-    handleOperators(e);
+    let input = e.key;
+    if (firstEnd && opUsed && !secondValue) {
+      handleDelete();
+      fullInput += ` ${input} `;
+      currentOp = input;
+      display.textContent = fullInput;
+    } else if (opUsed && secondValue) {
+      let res = operate(currentOp, firstValue, secondValue);
+      fullInput = String(res) + ` ${input} `;
+
+      currentOp = input;
+      firstValue = String(res);
+      secondValue = "";
+      display.textContent = fullInput;
+    } else if (!opUsed && firstValue) {
+      currentOp = input;
+      opUsed = true;
+      fullInput += ` ${input} `;
+      display.textContent = fullInput;
+      firstEnd = true;
+    }
+
   } else if (key == "=" || key == "Enter") {
     handleEqual();
   } else if (key == ".") {
@@ -200,7 +234,7 @@ function handleDelete() {
 
 
 function handleOperators(e) {
-
+console.log("handling operator with e ",e);
   let input = e.target.textContent;
   if (firstEnd && opUsed && !secondValue) {
     handleDelete();
@@ -229,6 +263,8 @@ function handleOperators(e) {
 
 
 function handleNums(e) {
+  console.log("handling nums with e ", e);
+
   let input = e.target.textContent;
 
   // console.log(input);
