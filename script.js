@@ -11,7 +11,8 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-  return a * b;
+  let res = a * b;
+  return Number.isInteger(res) ? res : res.toFixed(2);
 }
 
 function divide(a, b) {
@@ -57,7 +58,6 @@ let display = document.querySelector(".current");
 const backspace = document.querySelector(".backspace");
 const equal = document.querySelector(".equal");
 const AC = document.querySelector(".ac");
-const sign = document.querySelector(".sign");
 const operators = document.querySelectorAll(".op");
 const nums = document.querySelectorAll(".number");
 const dot = document.querySelector(".dot");
@@ -234,7 +234,7 @@ function handleDelete() {
 
 
 function handleOperators(e) {
-console.log("handling operator with e ",e);
+
   let input = e.target.textContent;
   if (firstEnd && opUsed && !secondValue) {
     handleDelete();
