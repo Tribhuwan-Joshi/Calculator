@@ -105,7 +105,7 @@ function handleKeyboard(e) {
     handleAC();
   }
   let key = e.key;
-  // console.log("key pressed ", key);
+  console.log("key pressed ", key);
 
   if (key == "Escape") {
     handleAC();
@@ -126,6 +126,7 @@ function handleKeyboard(e) {
   } else if (key == "Backspace") {
     handleDelete();
   }
+  // console.log(fullInput);
 }
 
 function handleDot() {
@@ -176,6 +177,7 @@ function handleAC() {
   display.textContent = "0";
 }
 
+
 function handleDelete() {
   if (!fullInput) {
     return;
@@ -196,14 +198,17 @@ function handleDelete() {
   display.textContent = fullInput;
 }
 
+
 function handleOperators(e) {
+
   let input = e.target.textContent;
   if (firstEnd && opUsed && !secondValue) {
     handleDelete();
     fullInput += ` ${input} `;
     currentOp = input;
     display.textContent = fullInput;
-  } else if (opUsed && secondValue) {
+  }
+  else if (opUsed && secondValue) {
     let res = operate(currentOp, firstValue, secondValue);
     fullInput = String(res) + ` ${input} `;
 
@@ -218,7 +223,10 @@ function handleOperators(e) {
     display.textContent = fullInput;
     firstEnd = true;
   }
+
 }
+
+
 
 function handleNums(e) {
   let input = e.target.textContent;
