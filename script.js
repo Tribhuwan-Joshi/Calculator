@@ -79,7 +79,7 @@ document.addEventListener("keydown", (e) => handleKeyboard(e));
 
 // add eventlistener to all button for ensuring the size is under 16 character
 buttons.forEach((btn) =>
-  btn.addEventListener("click", function (e) {
+  btn.addEventListener("click", () =>{
     if (fullInput.length >= 16) {
       handleAC();
     }
@@ -93,10 +93,10 @@ equal.addEventListener("click", handleEqual);
 AC.addEventListener("click", handleAC);
 
 operators.forEach((op) =>
-  op.addEventListener("click", (e) => handleOperators(e))
+  op.addEventListener("click", (e) => handleOperators(e.target.textContent))
 );
 
-nums.forEach((num) => num.addEventListener("click", (e) => handleNums(e)));
+nums.forEach((num) => num.addEventListener("click", (e) => handleNums(e.target.textContent)));
 
 dot.addEventListener("click", handleDot);
 
@@ -205,8 +205,8 @@ function handleDelete() {
 }
 
 
-function handleOperators(e) {
-  let input = e.target.textContent;
+function handleOperators(input) {
+  
 
 
   if (firstEnd && opUsed && !secondValue) {
@@ -235,8 +235,8 @@ function handleOperators(e) {
 
 
 
-function handleNums(e) {
-  let input = e.target.textContent;
+function handleNums(input) {
+  
   if (!firstEnd) {
     firstValue += input;
     fullInput += input;
