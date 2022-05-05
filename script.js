@@ -205,7 +205,8 @@ function handleDelete() {
 }
 
 
-function handleOperators(input) {
+function handleOperators(e) {
+  let input = e.target.textContent;
 
 
   if (firstEnd && opUsed && !secondValue) {
@@ -234,7 +235,8 @@ function handleOperators(input) {
 
 
 
-function handleNums(input) {
+function handleNums(e) {
+  let input = e.target.textContent;
   if (!firstEnd) {
     firstValue += input;
     fullInput += input;
