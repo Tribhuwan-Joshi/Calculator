@@ -62,6 +62,7 @@ const operators = document.querySelectorAll(".op");
 const nums = document.querySelectorAll(".number");
 const dot = document.querySelector(".dot");
 
+
 /*  variables  */
 
 let fullInput = "";
@@ -73,7 +74,7 @@ let firstEnd = false;
 let secondValue = "";
 
 
-/* add eventlistener */
+/* add eventlistener for keyboard input */
 document.addEventListener("keydown", (e) => handleKeyboard(e));
 
 // add eventlistener to all button for ensuring the size is under 16 character
@@ -84,6 +85,8 @@ buttons.forEach((btn) =>
     }
   })
 );
+
+
 backspace.addEventListener("click", handleDelete);
 equal.addEventListener("click", handleEqual);
 
@@ -97,32 +100,30 @@ nums.forEach((num) => num.addEventListener("click", (e) => handleNums(e)));
 
 dot.addEventListener("click", handleDot);
 
+
 /* functions to handle events */
 
 function handleKeyboard(e) {
-  let input = e.key;
+  let key = e.key;
+  // console.log(input);
   if (fullInput.length >= 16) {
     handleAC();
   }
-  
+
 
   if (key == "Escape") {
     handleAC();
   }
   else if (key >= 0 && key <= 9) {
-    
-    handleNums(input);
 
-}  
-  else if (
-    key == "+" ||
-    key == "-" ||
-    key == "*" ||
-    key == "%" ||
-    key == "/"
-  ) {
-    handleOperators(input);
+    handleNums(key);
 
+  }
+
+  else if (key == "+" || key == "-" || key == "*" || key == "%" || key == "/") {
+    if (key == "*") key = "x";
+    else if (key == "/") key = "÷";
+    handleOperators(key);
   } else if (key == "=" || key == "Enter") {
     handleEqual();
   } else if (key == ".") {
@@ -130,7 +131,7 @@ function handleKeyboard(e) {
   } else if (key == "Backspace") {
     handleDelete();
   }
-  // console.log(fullInput);
+
 }
 
 function handleDot() {
@@ -154,7 +155,7 @@ function handleDot() {
       display.textContent = fullInput;
     }
   }
- 
+
 }
 
 function handleEqual() {
@@ -205,8 +206,8 @@ function handleDelete() {
 
 
 function handleOperators(input) {
-  
-  // let input = e.target.textContent;
+
+
   if (firstEnd && opUsed && !secondValue) {
     handleDelete();
     fullInput += ` ${input} `;
@@ -234,7 +235,7 @@ function handleOperators(input) {
 
 
 function handleNums(input) {
-    if (!firstEnd) {
+  if (!firstEnd) {
     firstValue += input;
     fullInput += input;
     display.textContent = fullInput;
@@ -243,4 +244,5 @@ function handleNums(input) {
     fullInput += input;
     display.textContent = fullInput;
   }
+
 }
